@@ -1,0 +1,47 @@
+# General
+
+{% if dash_network == 'testnet' %}
+testnet=1
+{% endif %}
+
+
+{% if dash_network == 'evonet' %}
+devnet=evonet
+port=20001
+rpcport=20002
+sporkaddr=yQuAu9YAMt4yEiXBeDp3q5bKpo7jsC2eEj
+
+# Hard-coded first node
+addnode=54.148.62.72:20001
+
+minimumdifficultyblocks=1000
+highsubsidyblocks=500
+highsubsidyfactor=10
+{% endif %}
+
+
+daemon=0  # leave this set to 0 for Docker
+logtimestamps=1
+
+
+{% if dash_masternode %}
+masternode=1
+masternodeblsprivkey={{ dash_masternode_operator_key }}
+{% endif %}
+
+{% if dashd_indexes %}
+# optional indices (required for Insight)
+txindex=1
+addressindex=1
+timestampindex=1
+spentindex=1
+{% endif %}
+
+
+# JSONRPC
+server=1
+listen=1
+rpcuser={{ dashd_rpc_user }}
+rpcpassword={{ dashd_rpc_pass }}
+rpcbind=0.0.0.0
+rpcallowip=0.0.0.0/0

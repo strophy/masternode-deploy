@@ -1,0 +1,25 @@
+---
+
+- name: Configure dashd
+  become: yes
+  template:
+    src: dash.conf.j2
+    dest: '/home/{{dashd_user}}/dash.conf'
+    owner: '{{dashd_user}}'
+    group: '{{dashd_user}}'
+    mode: '0666'
+
+- name: Create dashd container
+  become: yes
+  docker_container:
+    name: dashd
+    image: '{{dashd_image}}'
+    state: started
+    restart: yes
+    command: 'dashd -conf=/dash/dash.conf'
+    user: dash
+    network_mode: host # test with bridge instead
+    restart_policy: always
+    volumes:
+      - data:/dash
+      - /home/{{dashd_user}}/dash.conf:/dash/dash.conf

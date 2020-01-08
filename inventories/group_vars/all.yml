@@ -1,0 +1,21 @@
+---
+
+# Dash settings
+dash_network: evonet
+
+dashd_user: dash
+dashd_group: dash
+dashd_home: /dash
+dashd_rpc_user: dashrpc
+dashd_rpc_pass: password
+
+dash_masternode: false
+dash_masternode_operator_key: 
+
+
+# Host settings
+user_name: "{{dashd_user}}"
+docker__users: ["{{dashd_user}}"]
+sshd_permit_root_login: yes
+#sshd_challenge_response_authentication: yes
+#sshd_password_authentication: yes

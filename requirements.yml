@@ -1,0 +1,8 @@
+---
+# from galaxy
+- src: nickjj.user
+- src: nickjj.sshd
+- src: nickjj.fail2ban
+- src: nickjj.iptables
+- src: nickjj.swapfile
+- src: nickjj.docker

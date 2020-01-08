@@ -1,0 +1,17 @@
+---
+
+- name: Create sentinel container
+  become: yes
+  docker_container:
+    name: sentinel
+    image: '{{sentinel_image}}'
+    state: started
+    restart: yes
+    network_mode: host
+    restart_policy: always
+    volumes:
+      - data:/dash
+      - /home/{{dashd_user}}/dash.conf:/sentinel/dash.conf
+    env:
+      RPCHOST: localhost
+      NETWORK: '{{dash_network}}'

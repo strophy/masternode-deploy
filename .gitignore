@@ -1,0 +1,5 @@
+
+playbooks/roles/nickjj*
+ubuntu*.log
+.vagrant
+*DS_Store

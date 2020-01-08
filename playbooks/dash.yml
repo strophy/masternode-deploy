@@ -1,0 +1,19 @@
+---
+- name: Set up environment
+  hosts: all
+  become: true
+  tags: environment
+  roles:
+    - nickjj.user
+    - nickjj.sshd
+    # - nickjj.fail2ban
+    - nickjj.iptables
+    - nickjj.swapfile
+    - nickjj.docker
+
+- name: Set up masternode
+  hosts: all
+  tags: masternode
+  roles:
+    - dashd
+    - sentinel
