@@ -1,7 +1,6 @@
 ---
 
 - name: Configure dashd
-  become: yes
   template:
     src: dash.conf.j2
     dest: '/home/{{dashd_user}}/dash.conf'
@@ -10,7 +9,6 @@
     mode: '0666'
 
 - name: Create dashd container
-  become: yes
   docker_container:
     name: dashd
     image: '{{dashd_image}}'
