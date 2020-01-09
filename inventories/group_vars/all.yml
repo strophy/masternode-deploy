@@ -13,11 +13,17 @@ dashd_user: dash
 dashd_group: dash
 dashd_home: /dash
 dashd_rpc_user: dashrpc
-dashd_rpc_pass: password
+dashd_rpc_password: password
+dashd_p2p_port: '20001'
+dashd_rpc_port: '20002'
+dashd_zmq_port: '20003'
 
 # Masternode settings
 dash_masternode: false
 dash_masternode_operator_key: 
 
 # Drive settings
-drive_image: 
+drive_image: dashpay/drive
+
+# DAPI image
+dapi_image: dashpay/dapi

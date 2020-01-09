@@ -1,7 +1,19 @@
 ---
 
-- name: Create masternode evolution services dir
-  file:
-    path: '{{ mn_evo_services_path }}'
-    state: directory
-    recurse: true
+- name: Create DAPI container
+  become: yes
+  docker_container:
+    name: dapi
+    image: '{{dapi_image}}'
+    state: started
+    restart: yes
+    network_mode: host
+    restart_policy: always
+    command: 'npm run core'
+    env:
+      DASHCORE_RPC_HOST: dashd
+      DASHCORE_RPC_PORT: '{{ dashd_rpc_port }}'
+      DASHCORE_ZMQ_HOST: dashd
+      DASHCORE_ZMQ_PORT: '{{ dashd_zmq_port }}'
+      DASHCORE_P2P_HOST: dashd
+      DASHCORE_P2P_PORT: '{{ dashd_p2p_port }}'
