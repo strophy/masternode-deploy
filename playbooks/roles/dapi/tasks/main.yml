@@ -1,0 +1,7 @@
+---
+
+- name: Create masternode evolution services dir
+  file:
+    path: '{{ mn_evo_services_path }}'
+    state: directory
+    recurse: true
