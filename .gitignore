@@ -3,3 +3,5 @@ playbooks/roles/nickjj*
 ubuntu*.log
 .vagrant
 *DS_Store
+inventories/group_vars/all.yml
+inventories/inventory.yml
