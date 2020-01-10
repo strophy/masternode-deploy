@@ -7,6 +7,13 @@ sshd_permit_root_login: "yes"
 #sshd_challenge_response_authentication: yes
 #sshd_password_authentication: yes
 
+# Docker images
+dashd_image:    dashpay/dashd
+sentinel_image: strophy/sentinel
+dapi_image:     dashpay/dapi
+drive_image:    dashpay/drive
+insight_image:  dashpay/insight-api
+
 # Dash settings
 dash_network: evonet
 dashd_user: dash
@@ -21,9 +28,3 @@ dashd_zmq_port: '20003'
 # Masternode settings
 dash_masternode: false
 dash_masternode_operator_key: 
-
-# Drive settings
-drive_image: dashpay/drive
-
-# DAPI image
-dapi_image: dashpay/dapi
