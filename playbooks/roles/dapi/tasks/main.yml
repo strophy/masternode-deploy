@@ -1,7 +1,6 @@
 ---
 
 - name: Create DAPI container
-  become: yes
   docker_container:
     name: dapi
     image: '{{dapi_image}}'

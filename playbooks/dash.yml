@@ -18,4 +18,5 @@
   roles:
     - dashd
     - sentinel
+    - insight
     - dapi

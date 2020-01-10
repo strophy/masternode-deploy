@@ -25,6 +25,9 @@ dashd_p2p_port: '20001'
 dashd_rpc_port: '20002'
 dashd_zmq_port: '20003'
 
+# Insight settings
+insight_port: '30001'
+
 # Masternode settings
 dash_masternode: false
 dash_masternode_operator_key: 
