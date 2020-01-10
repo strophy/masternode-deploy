@@ -45,3 +45,13 @@ rpcuser={{ dashd_rpc_user }}
 rpcpassword={{ dashd_rpc_password }}
 rpcbind=0.0.0.0
 rpcallowip=0.0.0.0/0
+
+{% if dashd_zmq %}
+# ZeroMQ notifications (required for Insight)
+zmqpubrawtx=tcp://0.0.0.0:{{ dashd_zmq_port }}
+zmqpubrawtxlock=tcp://0.0.0.0:{{ dashd_zmq_port }}
+zmqpubhashblock=tcp://0.0.0.0:{{ dashd_zmq_port }}
+zmqpubhashtx=tcp://0.0.0.0:{{ dashd_zmq_port }}
+zmqpubhashtxlock=tcp://0.0.0.0:{{ dashd_zmq_port }}
+zmqpubrawblock=tcp://0.0.0.0:{{ dashd_zmq_port }}
+{% endif %}

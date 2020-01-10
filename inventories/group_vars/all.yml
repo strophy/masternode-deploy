@@ -27,6 +27,7 @@ dashd_zmq_port: '20003'
 
 # Insight settings
 insight_port: '30001'
+dashd_zmq: true
 
 # Masternode settings
 dash_masternode: false
