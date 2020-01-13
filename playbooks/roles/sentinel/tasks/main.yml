@@ -1,13 +1,11 @@
 ---
 
 - name: Create sentinel container
-  become: yes
   docker_container:
     name: sentinel
     image: '{{sentinel_image}}'
     state: started
     restart: yes
-    #network_mode: host
     networks_cli_compatible: yes
     networks:
       - name: '{{ docker_network_name }}'

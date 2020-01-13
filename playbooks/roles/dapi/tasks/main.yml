@@ -6,7 +6,6 @@
     image: '{{dapi_image}}'
     state: started
     restart: yes
-    #network_mode: host
     networks_cli_compatible: yes
     networks:
       - name: '{{ docker_network_name }}'

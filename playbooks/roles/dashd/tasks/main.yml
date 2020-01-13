@@ -16,7 +16,6 @@
     restart: yes
     command: 'dashd -conf=/dash/dash.conf'
     user: dash
-    #network_mode: host # test with bridge instead
     networks_cli_compatible: yes
     networks:
       - name: '{{ docker_network_name }}'
