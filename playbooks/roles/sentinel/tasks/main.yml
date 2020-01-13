@@ -7,7 +7,10 @@
     image: '{{sentinel_image}}'
     state: started
     restart: yes
-    network_mode: host
+    #network_mode: host
+    networks_cli_compatible: yes
+    networks:
+      - name: '{{ docker_network_name }}'
     restart_policy: always
     volumes:
       - data:/dash

@@ -4,6 +4,7 @@
 user_name: "{{dashd_user}}"
 docker__users: ["{{dashd_user}}"]
 sshd_permit_root_login: "yes"
+docker_network_name: dash-net
 #sshd_challenge_response_authentication: yes
 #sshd_password_authentication: yes
 
