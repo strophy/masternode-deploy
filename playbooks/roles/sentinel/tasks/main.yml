@@ -14,5 +14,5 @@
       - data:/dash
       - /home/{{dashd_user}}/dash.conf:/sentinel/dash.conf
     env:
-      RPCHOST: localhost
+      RPCHOST: dashd
       NETWORK: '{{dash_network}}'
