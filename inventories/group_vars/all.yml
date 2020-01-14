@@ -35,3 +35,8 @@ dashd_zmq: true
 # Masternode settings
 dash_masternode: false
 dash_masternode_operator_key: 
+
+# Platform settings
+platform_allowed_data_contract_identities: ''
+platform_dpns_contract_identity: ''
+platform_dpns_top_level_domain_identity: ''
