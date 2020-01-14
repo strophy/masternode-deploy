@@ -1,0 +1,26 @@
+{
+  "network": "testnet",
+  "port": 3001,
+  "services": [
+    "dashd",
+    "web",
+    "@dashevo/insight-api"
+  ],
+  "servicesConfig": {
+    "dashd": {
+      "connect": [
+        {
+          "rpchost": "dashd",
+          "rpcport": {{ dashd_rpc_port }},
+          "rpcuser": "{{ dashd_rpc_user }}",
+          "rpcpassword": "{{ dashd_rpc_password }}",
+          "zmqpubrawtx": "tcp://dashd:{{ dashd_zmq_port }}",
+          "zmqpubhashblock": "tcp://dashd:{{ dashd_zmq_port }}"
+        }
+      ]
+    },
+    "@dashevo/insight-api": {
+      "disableRateLimiter": true
+    }
+  }
+}

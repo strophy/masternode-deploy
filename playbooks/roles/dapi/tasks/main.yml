@@ -1,0 +1,20 @@
+---
+
+- name: Create DAPI container
+  docker_container:
+    name: dapi
+    image: '{{dapi_image}}'
+    state: started
+    restart: yes
+    networks_cli_compatible: yes
+    networks:
+      - name: '{{ docker_network_name }}'
+    restart_policy: always
+    command: 'npm run core'
+    env:
+      DASHCORE_RPC_HOST: dashd
+      DASHCORE_RPC_PORT: '{{ dashd_rpc_port }}'
+      DASHCORE_ZMQ_HOST: dashd
+      DASHCORE_ZMQ_PORT: '{{ dashd_zmq_port }}'
+      DASHCORE_P2P_HOST: dashd
+      DASHCORE_P2P_PORT: '{{ dashd_p2p_port }}'

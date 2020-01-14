@@ -14,6 +14,13 @@
 - name: Set up masternode
   hosts: all
   tags: masternode
+  become: true
+  pre_tasks:
+  - name: Create network
+    docker_network:
+      name: '{{ docker_network_name }}'
   roles:
     - dashd
     - sentinel
+    - insight
+    - dapi

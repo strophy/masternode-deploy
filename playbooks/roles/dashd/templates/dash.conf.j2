@@ -7,8 +7,8 @@ testnet=1
 
 {% if dash_network == 'evonet' %}
 devnet=evonet
-port=20001
-rpcport=20002
+port= {{ dashd_p2p_port }}
+rpcport= {{ dashd_rpc_port }}
 sporkaddr=yQuAu9YAMt4yEiXBeDp3q5bKpo7jsC2eEj
 
 # Hard-coded first node
@@ -42,6 +42,16 @@ spentindex=1
 server=1
 listen=1
 rpcuser={{ dashd_rpc_user }}
-rpcpassword={{ dashd_rpc_pass }}
+rpcpassword={{ dashd_rpc_password }}
 rpcbind=0.0.0.0
 rpcallowip=0.0.0.0/0
+
+{% if dashd_zmq %}
+# ZeroMQ notifications (required for Insight)
+zmqpubrawtx=tcp://0.0.0.0:{{ dashd_zmq_port }}
+zmqpubrawtxlock=tcp://0.0.0.0:{{ dashd_zmq_port }}
+zmqpubhashblock=tcp://0.0.0.0:{{ dashd_zmq_port }}
+zmqpubhashtx=tcp://0.0.0.0:{{ dashd_zmq_port }}
+zmqpubhashtxlock=tcp://0.0.0.0:{{ dashd_zmq_port }}
+zmqpubrawblock=tcp://0.0.0.0:{{ dashd_zmq_port }}
+{% endif %}

@@ -1,0 +1,22 @@
+---
+
+- name: Configure insight
+  template:
+    src: insight.json.j2
+    dest: '/home/{{ dashd_user }}/insight.json'
+    owner: '{{ dashd_user }}'
+    group: '{{ dashd_user }}'
+    mode: '0666'
+
+- name: Create insight container
+  docker_container:
+    name: insight
+    image: '{{ insight_image }}'
+    state: started
+    restart: yes
+    networks_cli_compatible: yes
+    networks:
+      - name: '{{ docker_network_name }}'
+    restart_policy: always
+    volumes:
+      - /home/{{ dashd_user }}/insight.json:/insight/dashcore-node.json
