@@ -1,0 +1,14 @@
+---
+
+- name: Create mongodb container
+  docker_container:
+    name: mongodb
+    image: '{{mongodb_image}}'
+    state: started
+    restart: yes
+    command: 'mongod --replSet driveDocumentIndices --bind_ip_all'
+    networks_cli_compatible: yes
+    networks:
+      - name: '{{ docker_network_name }}'
+    volumes:
+      - mongodb_data:/data/db

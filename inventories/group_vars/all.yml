@@ -14,6 +14,8 @@ sentinel_image: strophy/sentinel
 dapi_image:     dashpay/dapi
 drive_image:    dashpay/drive
 insight_image:  dashpay/insight-api
+drive_image:    dashpay/drive
+mongodb_image:  mongo
 
 # Dash settings
 dash_network: evonet
