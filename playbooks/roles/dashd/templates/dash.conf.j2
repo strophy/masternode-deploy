@@ -1,50 +1,33 @@
 # General
 
+# JSONRPC
+server=1
+listen=1
+daemon=0  # leave this set to 0 for Docker
+logtimestamps=1
+port= {{ dashd_p2p_port }}
+rpcport= {{ dashd_rpc_port }}
+rpcuser={{ dashd_rpc_user }}
+rpcpassword={{ dashd_rpc_password }}
+rpcbind=0.0.0.0
+rpcallowip=0.0.0.0/0
+
 {% if dash_network == 'testnet' %}
 testnet=1
 {% endif %}
 
-
 {% if dash_network == 'evonet' %}
 devnet=evonet
-port= {{ dashd_p2p_port }}
-rpcport= {{ dashd_rpc_port }}
-sporkaddr=yQuAu9YAMt4yEiXBeDp3q5bKpo7jsC2eEj
-
-# Hard-coded first node
 addnode=54.148.62.72:20001
-
+sporkaddr=yQuAu9YAMt4yEiXBeDp3q5bKpo7jsC2eEj
 minimumdifficultyblocks=1000
 highsubsidyblocks=500
 highsubsidyfactor=10
 {% endif %}
 
-
-daemon=0  # leave this set to 0 for Docker
-logtimestamps=1
-
-
-{% if dash_masternode %}
-masternode=1
-masternodeblsprivkey={{ dash_masternode_operator_privkey }}
+{% if masternode %}
+masternodeblsprivkey={{ masternode_operator_privkey }}
 {% endif %}
-
-{% if dashd_indexes %}
-# optional indices (required for Insight)
-txindex=1
-addressindex=1
-timestampindex=1
-spentindex=1
-{% endif %}
-
-
-# JSONRPC
-server=1
-listen=1
-rpcuser={{ dashd_rpc_user }}
-rpcpassword={{ dashd_rpc_password }}
-rpcbind=0.0.0.0
-rpcallowip=0.0.0.0/0
 
 {% if dashd_zmq %}
 # ZeroMQ notifications (required for Insight)
@@ -54,4 +37,12 @@ zmqpubhashblock=tcp://0.0.0.0:{{ dashd_zmq_port }}
 zmqpubhashtx=tcp://0.0.0.0:{{ dashd_zmq_port }}
 zmqpubhashtxlock=tcp://0.0.0.0:{{ dashd_zmq_port }}
 zmqpubrawblock=tcp://0.0.0.0:{{ dashd_zmq_port }}
+{% endif %}
+
+{% if dashd_indexes %}
+# optional indices (required for Insight)
+txindex=1
+addressindex=1
+timestampindex=1
+spentindex=1
 {% endif %}

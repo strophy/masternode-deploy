@@ -26,10 +26,19 @@
     docker_network:
       name: '{{ docker_network_name }}'
   - include: set_network.yml
+  - set_fact:
+      dashd_zmq: true
+      dashd_indexes: true
+    when: evo_services
   roles:
     - dashd
-    - sentinel
-    - insight
-    - dapi
-    - drive
-    - js-machine
+    - role: sentinel
+      when: masternode
+    - role: insight
+      when: evo_services
+    - role: dapi
+      when: evo_services
+    - role: drive
+      when: evo_services
+    - role: js-machine
+      when: evo_services
