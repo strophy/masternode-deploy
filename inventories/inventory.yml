@@ -1,5 +1,7 @@
 ---
 all:
   hosts:
-    10.99.89.253:
-    10.99.89.254:
+    # Add hosts here
+    # 1.2.3.4:
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
