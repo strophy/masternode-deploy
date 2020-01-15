@@ -22,9 +22,10 @@
   tags: masternode
   become: true
   pre_tasks:
-  - name: Create network
+  - name: Create docker network
     docker_network:
       name: '{{ docker_network_name }}'
+  - include: set_network.yml
   roles:
     - dashd
     - sentinel

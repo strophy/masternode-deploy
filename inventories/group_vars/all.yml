@@ -3,7 +3,7 @@
 # Host settings
 user_name: '{{dashd_user}}'
 docker__users: ['{{dashd_user}}']
-sshd_permit_root_login: "yes"
+sshd_permit_root_login: 'yes'
 docker_network_name: dash-net
 #sshd_challenge_response_authentication: yes
 #sshd_password_authentication: yes
@@ -24,12 +24,8 @@ dashd_group: dash
 dashd_home: /dash
 dashd_rpc_user: dashrpc
 dashd_rpc_password: password
-dashd_p2p_port: '20001'
-dashd_rpc_port: '20002'
-dashd_zmq_port: '20003'
 
 # Insight settings
-insight_port: '30001'
 dashd_zmq: true
 
 # Masternode settings

@@ -1,0 +1,26 @@
+---
+
+- name: Set static variables
+  set_fact:
+    insight_port:   '30001'
+
+- name: Set mainnet variables
+  set_fact:
+    dashd_p2p_port: '9999'
+    dashd_rpc_port: '9998'
+    dashd_zmq_port: '9997'
+  when: dash_network == 'mainnet'
+  
+- name: Set evonet variables
+  set_fact:
+    dashd_p2p_port: '20001'
+    dashd_rpc_port: '20002'
+    dashd_zmq_port: '20003'
+  when: dash_network == 'evonet'
+  
+- name: Set testnet variables
+  set_fact:
+    dashd_p2p_port: '19999'
+    dashd_rpc_port: '19998'
+    dashd_zmq_port: '19997'
+  when: dash_network == 'testnet'
