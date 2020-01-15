@@ -1,20 +1,21 @@
 ---
 
 # Host settings
-user_name: "{{dashd_user}}"
-docker__users: ["{{dashd_user}}"]
+user_name: '{{dashd_user}}'
+docker__users: ['{{dashd_user}}']
 sshd_permit_root_login: "yes"
 docker_network_name: dash-net
 #sshd_challenge_response_authentication: yes
 #sshd_password_authentication: yes
 
 # Docker images
-dashd_image:    dashpay/dashd
-sentinel_image: strophy/sentinel
-dapi_image:     dashpay/dapi
-drive_image:    dashpay/drive
-insight_image:  dashpay/insight-api
-mongodb_image:  mongo
+dashd_image:     dashpay/dashd
+sentinel_image:  strophy/sentinel
+dapi_image:      dashpay/dapi
+drive_image:     dashpay/drive
+insight_image:   dashpay/insight-api
+mongodb_image:   mongo
+jsmachine_image: dashpay/js-machine
 
 # Dash settings
 dash_network: evonet
@@ -39,3 +40,4 @@ dash_masternode_operator_key:
 platform_allowed_data_contract_identities: ''
 platform_dpns_contract_identity: ''
 platform_dpns_top_level_domain_identity: ''
+platfrom_state_transitions_limiter_enabled: 'false'
