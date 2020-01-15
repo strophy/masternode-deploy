@@ -1,0 +1,74 @@
+---
+
+- name: Create mongodb container
+  docker_container:
+    name: mongodb
+    image: '{{mongodb_image}}'
+    state: started
+    restart: yes
+    command: 'mongod --replSet driveDocumentIndices --bind_ip_all'
+    networks_cli_compatible: yes
+    networks:
+      - name: '{{ docker_network_name }}'
+    published_ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
+
+- name: Install pymongo
+  pip: 
+    name: pymongo 
+    state: latest 
+
+- name: Initialize MongoDB replica set
+  mongodb_replicaset:
+    login_host: "localhost"
+    login_port: "27017"
+    replica_set: "driveDocumentIndices"
+    members:
+      - "localhost:27017"
+    validate: no
+
+- name: Start Drive update state container
+  docker_container:
+    name: drive_update_state
+    image: '{{drive_image}}'
+    state: started
+    restart: yes
+    restart_policy: always
+    command: 'sh -c "sleep 10 && npm run updateState"'
+    networks_cli_compatible: yes
+    networks:
+      - name: '{{ docker_network_name }}'
+    env:
+      DASHCORE_JSON_RPC_USER: '{{ dashd_rpc_user }}'
+      DASHCORE_JSON_RPC_PASS: '{{ dashd_rpc_password }}'
+      DASHCORE_JSON_RPC_HOST: dashd
+      DASHCORE_JSON_RPC_PORT: '{{ dashd_rpc_port }}'
+      STATEVIEW_MONGODB_URL: mongodb://mongodb:27017
+      UPDATE_STATE_GRPC_PORT: '5000'
+      TENDERMINT_RPC_HOST: tendermint
+      TENDERMINT_RPC_PORT: '26657'
+      ALLOWED_IDENTITIES: '{{ platform_allowed_data_contract_identities }}'
+      DPNS_CONTRACT_ID: '{{ platform_dpns_contract_identity }}'
+      DPNS_TOP_LEVEL_IDENTITY: '{{ platform_dpns_top_level_domain_identity }}'
+
+- name: Start Drive API container
+  docker_container: 
+    name: drive_api
+    image: '{{drive_image}}'
+    state: started
+    restart: yes
+    command: 'npm run api'
+    networks_cli_compatible: yes
+    networks:
+      - name: '{{ docker_network_name }}'
+    env:
+      DASHCORE_JSON_RPC_USER: '{{ dashd_rpc_user }}'
+      DASHCORE_JSON_RPC_PASS: '{{ dashd_rpc_password }}'
+      DASHCORE_JSON_RPC_HOST: dashd
+      DASHCORE_JSON_RPC_PORT: '{{ dashd_rpc_port }}'
+      STATEVIEW_MONGODB_URL: mongodb://mongodb:27017
+      API_RPC_PORT: '6000'
+      TENDERMINT_RPC_HOST: tendermint
+      TENDERMINT_RPC_PORT: '26657'

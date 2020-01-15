@@ -10,6 +10,12 @@
     - nickjj.iptables
     - nickjj.swapfile
     - nickjj.docker
+  post_tasks:
+  - name: Install modules
+    pip: 
+      name: 
+        - pymongo 
+        - docker
 
 - name: Set up masternode
   hosts: all
@@ -24,3 +30,4 @@
     - sentinel
     - insight
     - dapi
+    - drive

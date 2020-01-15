@@ -14,6 +14,7 @@ sentinel_image: strophy/sentinel
 dapi_image:     dashpay/dapi
 drive_image:    dashpay/drive
 insight_image:  dashpay/insight-api
+mongodb_image:  mongo
 
 # Dash settings
 dash_network: evonet
@@ -33,3 +34,8 @@ dashd_zmq: true
 # Masternode settings
 dash_masternode: false
 dash_masternode_operator_key: 
+
+# Platform settings
+platform_allowed_data_contract_identities: ''
+platform_dpns_contract_identity: ''
+platform_dpns_top_level_domain_identity: ''
