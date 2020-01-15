@@ -10,8 +10,24 @@
     networks_cli_compatible: yes
     networks:
       - name: '{{ docker_network_name }}'
+    published_ports:
+      - 27017:27017
     volumes:
       - mongodb_data:/data/db
+
+- name: Install pymongo
+  pip: 
+    name: pymongo 
+    state: latest 
+
+- name: Initialize MongoDB replica set
+  mongodb_replicaset:
+    login_host: "localhost"
+    login_port: "27017"
+    replica_set: "driveDocumentIndices"
+    members:
+      - "localhost:27017"
+    validate: no
 
 - name: Start Drive update state container
   docker_container:
@@ -19,7 +35,11 @@
     image: '{{drive_image}}'
     state: started
     restart: yes
+    restart_policy: always
     command: 'sh -c "sleep 10 && npm run updateState"'
+    networks_cli_compatible: yes
+    networks:
+      - name: '{{ docker_network_name }}'
     env:
       DASHCORE_JSON_RPC_USER: '{{ dashd_rpc_user }}'
       DASHCORE_JSON_RPC_PASS: '{{ dashd_rpc_password }}'
