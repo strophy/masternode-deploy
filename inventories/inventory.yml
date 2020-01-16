@@ -3,5 +3,7 @@ all:
   hosts:
     # Add hosts here
     # 1.2.3.4:
+    #   ansible_user: root
+    #   ansible_password: root_password
   vars:
     ansible_python_interpreter: /usr/bin/python3

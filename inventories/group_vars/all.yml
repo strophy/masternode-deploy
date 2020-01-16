@@ -10,17 +10,19 @@ mongodb_image:   mongo
 jsmachine_image: dashpay/js-machine
 
 # Dash settings
-dash_network: evonet
-evo_services: true
+dash_network: testnet
+evo_services: false
 dashd_user: dash
 dashd_group: dash
 dashd_home: /dash
 dashd_rpc_user: dashrpc
 dashd_rpc_password: password
+dashd_zmq: false
 
 # Masternode settings
 masternode: false
-masternode_operator_key: 
+masternode_operator_privkey: 
+external_ip: 
 
 # Platform settings
 platform_allowed_data_contract_identities: ''
