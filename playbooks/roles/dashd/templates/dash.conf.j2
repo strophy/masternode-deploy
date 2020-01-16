@@ -26,7 +26,9 @@ highsubsidyfactor=10
 {% endif %}
 
 {% if masternode %}
+masternode=1
 masternodeblsprivkey={{ masternode_operator_privkey }}
+externalip={{ external_ip }}
 {% endif %}
 
 {% if dashd_zmq %}

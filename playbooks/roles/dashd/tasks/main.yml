@@ -20,6 +20,8 @@
     networks:
       - name: '{{ docker_network_name }}'
     restart_policy: always
+    published_ports:
+      - '{{ dashd_p2p_port }}:{{ dashd_p2p_port }}'
     volumes:
       - data:/dash
       - /home/{{dashd_user}}/dash.conf:/dash/dash.conf
